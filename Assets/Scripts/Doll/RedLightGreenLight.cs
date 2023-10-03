@@ -30,7 +30,6 @@ public class RedLightGreenLight : MonoBehaviour
     // Red Light Handle
     void ChangeToRedLight()
     {
-        Debug.Log("Change to red light. Player can't move");
         // Turn to red light
         isRedLight = true;
         // Turn Back and Get player Position

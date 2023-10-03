@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    [SerializeField] Transform camera;
+    [SerializeField] Transform mainCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,6 @@ public class MoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = camera.position;
+        transform.position = mainCamera.position;
     }
 }

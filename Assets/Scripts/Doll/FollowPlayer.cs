@@ -11,10 +11,18 @@ public class FollowPlayer : MonoBehaviour
     private float dragForce;
     [SerializeField] private float moveSpeed;
 
+    [SerializeField] GameObject lighting;
+    [SerializeField] GameObject player;
+
+    [SerializeField] GameObject gameOver;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -66,5 +74,29 @@ public class FollowPlayer : MonoBehaviour
     void StopMoving()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    void DestroyAll()
+    {
+        Destroy(lighting);
+        audioSource.Play();
+        Destroy(player);
+    }
+    
+    void DisplayMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !CheckPlayerView.hasBeenSeen)
+        {
+            DestroyAll();
+            gameOver.SetActive(true);
+
+            DisplayMouse();
+        }
     }
 }

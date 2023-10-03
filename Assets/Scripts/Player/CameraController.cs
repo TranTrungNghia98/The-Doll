@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Transform orientation;
+    [SerializeField] Transform flashLight;
     private float mouseSpeed = 200.0f;
     private float mouseX;
     private float mouseY;
@@ -39,12 +40,14 @@ public class CameraController : MonoBehaviour
 
     void LookAround()
     {
-        // Change Rotation
+        // Change Rotation when player use mouse
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         yRotation += mouseX;
 
+        // Change Camera, Orientation, Flash Light Rotation
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
+        flashLight.localRotation = transform.localRotation;
     }
 }

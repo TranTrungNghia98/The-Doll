@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainUIHandle : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class MainUIHandle : MonoBehaviour
 
     public void UpdateMoneyBagUI(int pickedMoneyBags)
     {
-        moneyBagsText.text = "Money Bags: " + pickedMoneyBags + " / 9";
+        moneyBagsText.text = "Money Bags: " + pickedMoneyBags + " / 6";
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene("Main Scene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
